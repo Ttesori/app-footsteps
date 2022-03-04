@@ -1,46 +1,83 @@
 const asyncHandler = require('express-async-handler');
 const Hike = require('../models/hikeModel');
+const User = require('../models/userModel');
 
-// GET hikes
+/*
+GET hikes
+*/
 const getHikes = asyncHandler(async (req, res) => {
-  const hikes = await Hike.find();
+  const hikes = await Hike.find({ user: req.user.id });
 
   res.json(hikes);
 });
 
-// POST hike
+/*
+POST hike
+*/
 const createHike = asyncHandler(async (req, res) => {
-  if (!req.body.title) {
+  const { title, location, distance, rating, notes } = req.body;
+  if (!title || !location) {
     res.status(400);
-    throw new Error('Title required');
+    throw new Error('Title and location required');
   }
   const hike = await Hike.create({
-    title: req.body.title
+    title, location, distance, rating, notes,
+    user: req.user.id
   });
 
   res.status(200).json(hike)
 });
 
-// PUT hike
+/*
+PUT hike
+*/
 const updateHike = asyncHandler(async (req, res) => {
-  const hike = await Hike.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  const hike = await Hike.findById(req.params.id);
+  const user = await User.findById(req.user.id);
 
-  if (!hike) {
-    res.status(400);
-    throw new Error('Hike not found');
+  // Check that user exists
+  if (!user) {
+    res.status(401);
+    throw new Error('User not found');
   }
 
-  res.status(200).json(hike)
+  // Check that hike belongs to user
+  if (hike.user.toString() !== user.id) {
+    res.status(401);
+    throw new Error('User not authorized');
+  }
+
+  // update Hike
+  const updatedHike = await Hike.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  res.status(200).json(updatedHike);
 });
 
-// DELETE hike
+/*
+DELETE hike
+*/
 const deleteHike = asyncHandler(async (req, res) => {
   const hike = await Hike.findById(req.params.id);
+  const user = await User.findById(req.user.id);
 
+  // Hike not found
   if (!hike) {
     res.status(400);
     throw new Error('Hike not found');
   }
+
+  // Check that user exists
+  if (!user) {
+    res.status(401);
+    throw new Error('User not found');
+  }
+
+  // Check that hike belongs to user
+  if (hike.user.toString() !== user.id) {
+    res.status(401);
+    throw new Error('User not authorized');
+  }
+
+  // Remove hike
   await hike.remove();
   res.status(200).json({ id: req.params.id });
 });

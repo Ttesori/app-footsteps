@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const { getHikes, createHike, updateHike, deleteHike } = require('../controllers/hikeController');
+const { protect } = require('../middleware/authMiddleware');
 
-router.get('/', getHikes);
-router.post('/', createHike);
-router.put('/:id', updateHike);
-router.delete('/:id', deleteHike);
+router.get('/', protect, getHikes);
+router.post('/', protect, createHike);
+router.put('/:id', protect, updateHike);
+router.delete('/:id', protect, deleteHike);
 
 module.exports = router;

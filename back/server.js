@@ -12,6 +12,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // Routes
 app.use('/api/hikes', require('./routes/hikeRoutes'))
+app.use('/api/users', require('./routes/userRoutes'))
 
 app.use(errorHandler);
 
