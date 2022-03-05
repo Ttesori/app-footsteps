@@ -73,7 +73,7 @@ const deleteHike = asyncHandler(async (req, res) => {
 
   // Check that hike belongs to user
   if (hike.user.toString() !== user.id) {
-    res.status(401);
+    res.status(403);
     throw new Error('User not authorized');
   }
 
