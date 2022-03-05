@@ -19,7 +19,7 @@ const createUser = asyncHandler(async (req, res) => {
   const userExists = await User.findOne({ email });
   if (userExists) {
     res.status(400);
-    throw new Error('User already exists')
+    throw new Error('User already exists');
   }
 
   // Hash password
@@ -31,7 +31,7 @@ const createUser = asyncHandler(async (req, res) => {
     name,
     email,
     password: hashedPassword,
-  })
+  });
 
   if (user) {
     res.status(201).json({
@@ -39,10 +39,10 @@ const createUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       token: generateToken(user.id)
-    })
+    });
   } else {
     res.status(400);
-    throw new Error('Invalid user data')
+    throw new Error('Invalid user data');
   }
 });
 
@@ -61,10 +61,10 @@ const loginUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       token: generateToken(user.id)
-    })
+    });
   } else {
-    res.status(400);
-    throw new Error('Invalid credentials');
+    res.status(403);
+    throw new Error('Email or password is invalid');
   }
 
 });
@@ -78,7 +78,7 @@ const getUser = asyncHandler(async (req, res) => {
     id: user.id,
     name: user.name,
     email: user.email
-  })
+  });
 });
 
 /*
@@ -87,7 +87,7 @@ Generate JWT
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: '7d'
-  })
-}
+  });
+};
 
-module.exports = { createUser, loginUser, getUser }
+module.exports = { createUser, loginUser, getUser };
