@@ -15,17 +15,22 @@ const getHikes = asyncHandler(async (req, res) => {
 POST hike
 */
 const createHike = asyncHandler(async (req, res) => {
-  const { title, location, distance, rating, notes } = req.body;
-  if (!title || !location) {
+  const { title, location, distance, date, notes } = req.body;
+  if (!title || !location || !date) {
     res.status(400);
-    throw new Error('Title and location required');
+    throw new Error('Title, location, and date required');
   }
   const hike = await Hike.create({
-    title, location, distance, rating, notes,
+    title, location, distance, date, notes,
     user: req.user.id
   });
+  console.log(hike);
+  if (hike._id) {
+    res.status(201).json(hike);
+  } else {
+    res.status(400).json(hike.error);
+  }
 
-  res.status(200).json(hike)
 });
 
 /*
@@ -82,4 +87,4 @@ const deleteHike = asyncHandler(async (req, res) => {
   res.status(200).json({ id: req.params.id });
 });
 
-module.exports = { getHikes, createHike, updateHike, deleteHike }
+module.exports = { getHikes, createHike, updateHike, deleteHike };

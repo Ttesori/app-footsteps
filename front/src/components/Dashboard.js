@@ -16,13 +16,14 @@ const Dashboard = ({ user, handleLogout }) => {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${user.token}`
         },
-        body: JSON.stringify({ ...newHike, user: user.id })
+        body: JSON.stringify(newHike)
       };
       let resp = await fetch(HIKES_URI, fetchOptions);
       let body = await resp.json();
-      if (resp.status === 201) {
+      console.log(body);
+      if (body._id && !body.error) {
         setLoading(false);
-        setHikes([...hikes, newHike]);
+        setHikes([...hikes, body]);
       } else {
         console.log(resp.status, resp.message);
       }
@@ -46,6 +47,7 @@ const Dashboard = ({ user, handleLogout }) => {
         let body = await resp.json();
         if (resp.ok) {
           setLoading(false);
+          console.log('hikes', body);
           setHikes(body);
         }
       } catch (error) {

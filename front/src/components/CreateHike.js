@@ -4,12 +4,17 @@ const CreateHike = ({ handleCreateHike }) => {
   const [newHike, setNewHike] = useState({
     title: '',
     location: '',
-    length: '',
-    desc: ''
+    distance: '',
+    date: '',
+    notes: ''
   });
   const handleUpdate = (e) => {
     const newHike2 = { ...newHike };
-    newHike2[e.target.id] = e.target.value;
+    if (e.target.id === 'distance') {
+      newHike2['distance'] = parseInt(e.target.value);
+    } else {
+      newHike2[e.target.id] = e.target.value;
+    }
     setNewHike(newHike2);
   };
   const handleSubmit = (e) => {
@@ -35,6 +40,14 @@ const CreateHike = ({ handleCreateHike }) => {
         </div>
 
         <div className="form__group">
+          <label htmlFor="">Date</label>
+          <input type="date" name="date" id="date"
+            placeholder="Hike date" value={newHike.date}
+            onChange={handleUpdate} required
+          />
+        </div>
+
+        <div className="form__group">
           <label htmlFor="">Location</label>
           <input type="text" name="location" id="location"
             placeholder="Hike location" value={newHike.location}
@@ -43,17 +56,16 @@ const CreateHike = ({ handleCreateHike }) => {
         </div>
 
         <div className="form__group">
-          <label htmlFor="length">Length</label>
-          <input type="text" name="length" id="length"
-            placeholder="Hike length" value={newHike.length}
+          <label htmlFor="distance">Distance</label>
+          <input type="number" name="distance" id="distance"
+            placeholder="Hike distance" value={newHike.distance}
             onChange={handleUpdate}
           />
         </div>
 
         <div className="form__group">
-          <label htmlFor="desc">Description</label>
-          <textarea name="desc" id="desc" placeholder="Description">
-            {newHike.description}
+          <label htmlFor="notes">Description</label>
+          <textarea name="notes" id="notes" placeholder="Description" value={newHike.notes} onChange={handleUpdate}>
           </textarea>
         </div>
         <button>Add Hike</button>

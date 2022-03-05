@@ -17,12 +17,13 @@ const hikeSchema = mongoose.Schema({
   distance: {
     type: Number,
   },
-  rating: {
-    type: Number,
+  date: {
+    type: Date,
+    required: [true, 'Hike must have a date']
   },
   notes: {
     type: String,
   },
-}, { timestamps: true })
+}, { timestamps: true });
 
 module.exports = mongoose.model('Hike', hikeSchema);

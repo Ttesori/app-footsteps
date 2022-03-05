@@ -1,10 +1,18 @@
-const HikesList = (hikes) => {
+import { useEffect, useState } from "react";
+
+const HikesList = ({ hikes }) => {
+  const [hikesList, setHikesList] = useState([]);
+
+  useEffect(() => {
+    if (hikes.length > 0) setHikesList(hikes.map(hike => <p key={hike._id}>{hike.title}</p>));
+  }, [hikes]);
+
+  useEffect(() => { console.log(hikesList); }, [hikesList]);
+
   return hikes && (
     <section>
       <h2>My Hikes</h2>
-      {hikes.length > 0 ?
-        hikes.map(hike => <p>{hike.title}</p>) :
-        <p>No hikes available.</p>}
+      {hikesList}
     </section>
   );
 };
