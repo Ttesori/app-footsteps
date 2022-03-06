@@ -65,6 +65,33 @@ const Dashboard = ({ user, handleLogout }) => {
     }
   };
 
+  const handleDeleteHike = async (hikeId) => {
+    setLoading(true);
+    try {
+      const HIKES_URI = `http://localhost:5000/api/hikes/${hikeId}`;
+      const fetchOptions = {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.token}`
+        },
+      };
+      let resp = await fetch(HIKES_URI, fetchOptions);
+      let body = await resp.json();
+      console.log(body);
+      if (resp.status === 200) {
+        setLoading(false);
+        const newHikes = hikes.filter(hike => hike._id !== hikeId);
+        setHikes([...newHikes]);
+      } else {
+        console.log(resp.status, resp.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
   useEffect(() => {
     const fetchHikes = async () => {
       try {
@@ -95,7 +122,7 @@ const Dashboard = ({ user, handleLogout }) => {
         <section>
           <h2>Welcome, {user.name}!</h2>
           <button onClick={handleLogout}>Log Out</button>
-          <HikesList hikes={hikes} handleEditHike={handleEditHike} />
+          <HikesList hikes={hikes} handleEditHike={handleEditHike} handleDeleteHike={handleDeleteHike} />
           <CreateHike handleCreateHike={handleCreateHike} handleUpdateHike={handleUpdateHike} hike={hikeToEdit} />
         </section>)}
       {loading && (

@@ -2,25 +2,6 @@ import { useState, useEffect } from "react";
 
 const CreateHike = ({ handleCreateHike, handleUpdateHike, hike }) => {
   const [newHike, setNewHike] = useState({});
-  const hikeTemplate = {
-    title: '',
-    location: '',
-    distance: '',
-    date: '',
-    notes: ''
-  };
-
-  useEffect(() => {
-    const resetNewHike = {
-      title: hike?.title || '',
-      location: hike?.location || '',
-      distance: hike?.distance || '',
-      date: parseDate(hike?.date) || '',
-      notes: hike?.notes || ''
-    };
-    setNewHike(resetNewHike);
-
-  }, [hike]);
 
   const parseDate = (d) => {
     const date = new Date(d);
@@ -37,11 +18,30 @@ const CreateHike = ({ handleCreateHike, handleUpdateHike, hike }) => {
     return `${year}-${month}-${dt}`;
   };
 
+  const hikeTemplate = {
+    title: '',
+    location: '',
+    distance: '',
+    date: parseDate(new Date()),
+    notes: ''
+  };
+
+  useEffect(() => {
+    const resetNewHike = {
+      title: hike?.title || '',
+      location: hike?.location || '',
+      distance: hike?.distance || '',
+      date: parseDate(hike?.date) || '',
+      notes: hike?.notes || ''
+    };
+    setNewHike(resetNewHike);
+
+  }, [hike]);
 
   const handleUpdate = (e) => {
     const newHike2 = { ...newHike };
     if (e.target.id === 'distance') {
-      newHike2['distance'] = parseInt(e.target.value);
+      newHike2['distance'] = Number(e.target.value);
     } else {
       newHike2[e.target.id] = e.target.value;
     }

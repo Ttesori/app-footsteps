@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const HikesList = ({ hikes, handleEditHike }) => {
+const HikesList = ({ hikes, handleEditHike, handleDeleteHike }) => {
   const [hikesList, setHikesList] = useState([]);
 
   const formatDate = (d) => {
@@ -23,9 +23,10 @@ const HikesList = ({ hikes, handleEditHike }) => {
         </ul>
         <p>{hike.notes}</p>
         <button onClick={() => handleEditHike(hike._id)}>Edit</button>
+        <button onClick={() => handleDeleteHike(hike._id)}>Delete</button>
       </section>
     )));
-  }, [hikes, handleEditHike]);
+  }, [hikes, handleEditHike, handleDeleteHike]);
 
   useEffect(() => { console.log(hikesList); }, [hikesList]);
 
