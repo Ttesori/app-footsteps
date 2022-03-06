@@ -1,3 +1,12 @@
+## 3/6/2022
+
+- Got Delete functionality working.
+- Starting list of eventual features:
+  -- Search hikes
+  -- Loading skeleton
+  -- Change unit miles/kilometers
+  -- Add photo for hike
+
 ## 3/5/2022
 
 - Got CRU working on the front end. Planning to add D tomorrow or Monday. Ran into some organization issues that could be helped by integrating Context API but okay with prop drilling for now
