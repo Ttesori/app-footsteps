@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Login = ({ handleLogin }) => {
+const Login = ({ handleLogin, user }) => {
   const [email, setEmail] = useState('');
   const [pwd, setPwd] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -21,10 +24,18 @@ const Login = ({ handleLogin }) => {
     if (resp.status === 200) {
       // Sign in successful
       handleLogin(body);
+      navigate('/hikes');
     } else {
       setErrorMsg(`${body.error}`);
     }
   };
+
+  useEffect(() => {
+    if (user.id) {
+      navigate('/hikes');
+    }
+  }, [navigate, user.id]);
+
   return (
     <section className="login">
       <h2>Sign In</h2>

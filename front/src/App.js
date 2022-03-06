@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 
@@ -25,8 +26,12 @@ function App() {
 
   return (
     <div className="App">
-      {!user.name && <Login handleLogin={handleLogin} />}
-      {user.name && user.token && <Dashboard user={user} handleLogout={handleLogout} />}
+      <BrowserRouter>
+        <Routes>
+          <Route index path='/*' element={<Login handleLogin={handleLogin} user={user} />} />
+          <Route path='/hikes' element={<Dashboard user={user} handleLogout={handleLogout} />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

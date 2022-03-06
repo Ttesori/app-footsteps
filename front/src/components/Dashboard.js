@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CreateHike from "./CreateHike";
 import HikesList from "./HikesList";
 
@@ -7,6 +8,7 @@ const Dashboard = ({ user, handleLogout }) => {
   const [hikes, setHikes] = useState([]);
   const [hikeToEdit, setHikeToEdit] = useState({});
   const [createIsOpen, setCreateIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleCloseCreate = () => {
     setCreateIsOpen(false);
@@ -99,6 +101,11 @@ const Dashboard = ({ user, handleLogout }) => {
     }
   };
 
+  const handleLocalLogout = () => {
+    handleLogout();
+    navigate('/login');
+  };
+
 
   useEffect(() => {
     const fetchHikes = async () => {
@@ -129,7 +136,7 @@ const Dashboard = ({ user, handleLogout }) => {
       {!loading && (
         <section>
           <h2>Welcome, {user.name}!</h2>
-          <button onClick={handleLogout}>Log Out</button>
+          <button onClick={handleLocalLogout}>Log Out</button>
           <HikesList hikes={hikes} handleEditHike={handleEditHike} handleAddNew={() => setCreateIsOpen(true)} />
           {createIsOpen &&
             <CreateHike handleCreateHike={handleCreateHike} handleUpdateHike={handleUpdateHike} handleDeleteHike={handleDeleteHike} hike={hikeToEdit} handleClose={handleCloseCreate} />}
