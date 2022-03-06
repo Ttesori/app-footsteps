@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 
-const CreateHike = ({ handleCreateHike, handleUpdateHike, hike }) => {
+const CreateHike = ({ handleCreateHike, handleUpdateHike, handleDeleteHike, hike, handleClose }) => {
   const [newHike, setNewHike] = useState({});
 
-  const parseDate = (d) => {
-    const date = new Date(d);
+  const parseDate = (date) => {
     let year = date.getFullYear();
     let month = date.getMonth() + 1;
     let dt = date.getDate();
@@ -15,23 +14,28 @@ const CreateHike = ({ handleCreateHike, handleUpdateHike, hike }) => {
     if (month < 10) {
       month = '0' + month;
     }
+    console.log(`${year}-${month}-${dt}`);
     return `${year}-${month}-${dt}`;
   };
 
-  const hikeTemplate = {
-    title: '',
-    location: '',
-    distance: '',
-    date: parseDate(new Date()),
-    notes: ''
+  const resetHike = () => {
+    const hikeTemplate = {
+      title: '',
+      location: '',
+      distance: '',
+      date: parseDate(new Date()),
+      notes: ''
+    };
+    setNewHike(hikeTemplate);
   };
+
 
   useEffect(() => {
     const resetNewHike = {
-      title: hike?.title || '',
-      location: hike?.location || '',
+      title: hike?.title,
+      location: hike?.location,
       distance: hike?.distance || '',
-      date: parseDate(hike?.date) || '',
+      date: hike?.date ? parseDate(new Date(hike.date)) : parseDate(new Date()),
       notes: hike?.notes || ''
     };
     setNewHike(resetNewHike);
@@ -52,20 +56,21 @@ const CreateHike = ({ handleCreateHike, handleUpdateHike, hike }) => {
     e.preventDefault();
     if (hike._id) {
       handleUpdateHike(newHike);
-      setNewHike(hikeTemplate);
+      resetHike();
     } else {
       handleCreateHike(newHike);
-      setNewHike(hikeTemplate);
+      resetHike();
     }
-
   };
-  useEffect(() => {
-    console.log(newHike);
 
-  }, [newHike]);
+  const handleCloseAction = () => {
+    resetHike();
+    handleClose();
+  };
 
   return (
     <section>
+      <button onClick={handleCloseAction}>Close</button>
       <h2>{hike?._id ? 'Edit' : 'Add'} a Hike</h2>
       <form onSubmit={handleSubmit} className="form form--add">
 
@@ -107,6 +112,7 @@ const CreateHike = ({ handleCreateHike, handleUpdateHike, hike }) => {
           </textarea>
         </div>
         <button>{hike?._id ? 'Update' : 'Add'} Hike</button>
+        {hike?._id && <button onClick={() => handleDeleteHike(hike._id)}>Remove Hike</button>}
       </form>
     </section>
   );

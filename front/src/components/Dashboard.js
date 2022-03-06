@@ -6,14 +6,22 @@ const Dashboard = ({ user, handleLogout }) => {
   const [loading, setLoading] = useState(true);
   const [hikes, setHikes] = useState([]);
   const [hikeToEdit, setHikeToEdit] = useState({});
+  const [createIsOpen, setCreateIsOpen] = useState(false);
+
+  const handleCloseCreate = () => {
+    setCreateIsOpen(false);
+    setHikeToEdit({});
+  };
 
   const handleEditHike = (id) => {
     const selectedHike = hikes.filter(hike => hike._id === id)[0];
     setHikeToEdit(selectedHike);
+    setCreateIsOpen(true);
   };
 
   const handleCreateHike = async (newHike) => {
     setLoading(true);
+    setCreateIsOpen(true);
     try {
       const HIKES_URI = 'http://localhost:5000/api/hikes';
       const fetchOptions = {
@@ -122,8 +130,9 @@ const Dashboard = ({ user, handleLogout }) => {
         <section>
           <h2>Welcome, {user.name}!</h2>
           <button onClick={handleLogout}>Log Out</button>
-          <HikesList hikes={hikes} handleEditHike={handleEditHike} handleDeleteHike={handleDeleteHike} />
-          <CreateHike handleCreateHike={handleCreateHike} handleUpdateHike={handleUpdateHike} hike={hikeToEdit} />
+          <HikesList hikes={hikes} handleEditHike={handleEditHike} handleAddNew={() => setCreateIsOpen(true)} />
+          {createIsOpen &&
+            <CreateHike handleCreateHike={handleCreateHike} handleUpdateHike={handleUpdateHike} handleDeleteHike={handleDeleteHike} hike={hikeToEdit} handleClose={handleCloseCreate} />}
         </section>)}
       {loading && (
         <p>Loading... </p>
