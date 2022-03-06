@@ -1,13 +1,43 @@
 import { useState, useEffect } from "react";
 
-const CreateHike = ({ handleCreateHike }) => {
-  const [newHike, setNewHike] = useState({
+const CreateHike = ({ handleCreateHike, handleUpdateHike, hike }) => {
+  const [newHike, setNewHike] = useState({});
+  const hikeTemplate = {
     title: '',
     location: '',
     distance: '',
     date: '',
     notes: ''
-  });
+  };
+
+  useEffect(() => {
+    const resetNewHike = {
+      title: hike?.title || '',
+      location: hike?.location || '',
+      distance: hike?.distance || '',
+      date: parseDate(hike?.date) || '',
+      notes: hike?.notes || ''
+    };
+    setNewHike(resetNewHike);
+
+  }, [hike]);
+
+  const parseDate = (d) => {
+    const date = new Date(d);
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let dt = date.getDate();
+
+    if (dt < 10) {
+      dt = '0' + dt;
+    }
+    if (month < 10) {
+      month = '0' + month;
+    }
+    return `${year}-${month}-${dt}`;
+  };
+
+
   const handleUpdate = (e) => {
     const newHike2 = { ...newHike };
     if (e.target.id === 'distance') {
@@ -17,9 +47,17 @@ const CreateHike = ({ handleCreateHike }) => {
     }
     setNewHike(newHike2);
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleCreateHike(newHike);
+    if (hike._id) {
+      handleUpdateHike(newHike);
+      setNewHike(hikeTemplate);
+    } else {
+      handleCreateHike(newHike);
+      setNewHike(hikeTemplate);
+    }
+
   };
   useEffect(() => {
     console.log(newHike);
@@ -28,7 +66,7 @@ const CreateHike = ({ handleCreateHike }) => {
 
   return (
     <section>
-      <h2>Add a Hike</h2>
+      <h2>{hike?._id ? 'Edit' : 'Add'} a Hike</h2>
       <form onSubmit={handleSubmit} className="form form--add">
 
         <div className="form__group">
@@ -68,7 +106,7 @@ const CreateHike = ({ handleCreateHike }) => {
           <textarea name="notes" id="notes" placeholder="Description" value={newHike.notes} onChange={handleUpdate}>
           </textarea>
         </div>
-        <button>Add Hike</button>
+        <button>{hike?._id ? 'Update' : 'Add'} Hike</button>
       </form>
     </section>
   );

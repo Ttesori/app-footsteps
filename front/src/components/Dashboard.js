@@ -5,6 +5,12 @@ import HikesList from "./HikesList";
 const Dashboard = ({ user, handleLogout }) => {
   const [loading, setLoading] = useState(true);
   const [hikes, setHikes] = useState([]);
+  const [hikeToEdit, setHikeToEdit] = useState({});
+
+  const handleEditHike = (id) => {
+    const selectedHike = hikes.filter(hike => hike._id === id)[0];
+    setHikeToEdit(selectedHike);
+  };
 
   const handleCreateHike = async (newHike) => {
     setLoading(true);
@@ -24,6 +30,33 @@ const Dashboard = ({ user, handleLogout }) => {
       if (body._id && !body.error) {
         setLoading(false);
         setHikes([...hikes, body]);
+      } else {
+        console.log(resp.status, resp.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleUpdateHike = async (updateHike) => {
+    setLoading(true);
+    try {
+      const HIKES_URI = `http://localhost:5000/api/hikes/${hikeToEdit._id}`;
+      const fetchOptions = {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.token}`
+        },
+        body: JSON.stringify({ ...updateHike })
+      };
+      let resp = await fetch(HIKES_URI, fetchOptions);
+      let body = await resp.json();
+      console.log(body);
+      if (body._id && !body.error) {
+        setLoading(false);
+        const newHikes = hikes.filter(hike => hike._id !== hikeToEdit._id);
+        setHikes([...newHikes, body]);
       } else {
         console.log(resp.status, resp.message);
       }
@@ -62,8 +95,8 @@ const Dashboard = ({ user, handleLogout }) => {
         <section>
           <h2>Welcome, {user.name}!</h2>
           <button onClick={handleLogout}>Log Out</button>
-          <HikesList hikes={hikes} />
-          <CreateHike handleCreateHike={handleCreateHike} />
+          <HikesList hikes={hikes} handleEditHike={handleEditHike} />
+          <CreateHike handleCreateHike={handleCreateHike} handleUpdateHike={handleUpdateHike} hike={hikeToEdit} />
         </section>)}
       {loading && (
         <p>Loading... </p>
