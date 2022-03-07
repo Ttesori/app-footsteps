@@ -1,11 +1,17 @@
 ## 3/6/2022
 
+- Left off on cleaning up prop drilling in Dashboard
+- Cleaned up fetches by adding generic fetch to context
+- Created context and began cleaning up drilled props
 - Got Delete functionality working.
 - Starting list of eventual features:
   -- Search hikes
   -- Loading skeleton
   -- Change unit miles/kilometers
   -- Add photo for hike
+  -- Modal for create/edit
+  -- Confirm for delete
+  -- Toast for alerts
 
 ## 3/5/2022
 
