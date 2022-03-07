@@ -7,7 +7,7 @@ import Alert from "./Alert";
 
 const Dashboard = () => {
 
-  const { handleLogout, user, handleFetch, setLoading, setHikes, loading, createIsOpen } = useContext(DataContext);
+  const { handleLogout, user, loading, createIsOpen, handleFetch, setLoading, setHikes, setInitialHikes } = useContext(DataContext);
   const navigate = useNavigate();
 
   const handleLocalLogout = () => {
@@ -16,21 +16,23 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
+    console.log('fetching hikes');
     const fetchHikes = async () => {
       const resp = await handleFetch('GET');
       if (resp?.length) {
         setLoading(false);
         setHikes(resp);
+        setInitialHikes(resp);
       }
     };
     fetchHikes();
-  }, [handleFetch, setHikes, setLoading]);
+  }, [user]);
 
   return (
     <>
       {!loading && (
         <section>
-          {alert && <Alert type={alert.type} message={alert.message} />}
+          {alert?.type && <Alert type={alert.type} message={alert.message} />}
           <h2>Welcome, {user.name}!</h2>
           <button onClick={handleLocalLogout}>Log Out</button>
           <HikesList />

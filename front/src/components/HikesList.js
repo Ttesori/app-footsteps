@@ -1,20 +1,26 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useContext } from "react";
 import DataContext from "../context/DataContext";
+import FilterTime from "./FilterTime";
+import FilterSort from "./FilterSort";
 import HikeItem from "./HikeItem";
+import Search from "./Search";
 
 const HikesList = () => {
-  const [hikesList, setHikesList] = useState([]);
-  const { hikes, setHikeToEdit, setCreateIsOpen } = useContext(DataContext);
+  const { hikes, setCreateIsOpen } = useContext(DataContext);
 
   useEffect(() => {
-    if (hikes.length > 0) setHikesList(hikes.map(hike => <HikeItem hike={hike} key={hike._id} />));
-  }, [hikes, setHikeToEdit]);
+    console.log(hikes);
+  }, [hikes]);
+
 
   return hikes && (
     <section>
       <h2>My Hikes</h2>
+      <Search />
+      <FilterTime />
+      <FilterSort />
       <button onClick={() => setCreateIsOpen(true)}>Add New Hike</button>
-      {hikesList}
+      {hikes.map(hike => <HikeItem hike={hike} key={hike._id} />)}
     </section>
   );
 };

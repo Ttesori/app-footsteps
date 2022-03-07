@@ -9,6 +9,7 @@ export const DataProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [hikes, setHikes] = useState([]);
   const [alert, setAlert] = useState({});
+  const [initialHikes, setInitialHikes] = useState({});
 
   useEffect(() => {
     if (localStorage.getItem('fs-user')) {
@@ -66,7 +67,8 @@ export const DataProvider = ({ children }) => {
       loading, setLoading,
       hikeToEdit, setHikeToEdit,
       createIsOpen, setCreateIsOpen,
-      alert, setAlert
+      alert, setAlert,
+      initialHikes, setInitialHikes
     }}>
       {children}
     </DataContext.Provider>
