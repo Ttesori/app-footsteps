@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import DataContext from '../context/DataContext';
 
-const Login = ({ handleLogin, user }) => {
+const Login = () => {
   const [email, setEmail] = useState('');
   const [pwd, setPwd] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const navigate = useNavigate();
+  const { handleLogin, user } = useContext(DataContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

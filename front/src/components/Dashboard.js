@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import CreateHike from "./CreateHike";
 import HikesList from "./HikesList";
+import DataContext from '../context/DataContext';
 
-const Dashboard = ({ user, handleLogout }) => {
+const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [hikes, setHikes] = useState([]);
   const [hikeToEdit, setHikeToEdit] = useState({});
   const [createIsOpen, setCreateIsOpen] = useState(false);
+  const { handleLogout, user } = useContext(DataContext);
   const navigate = useNavigate();
 
   const handleCloseCreate = () => {
