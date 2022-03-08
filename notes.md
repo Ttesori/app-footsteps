@@ -1,3 +1,10 @@
+## 3/7/2022
+
+- Added filtering by date, using dayjs. Tried to do it with native Date but it got way too complicated. Still need to go back and implement dayjs where I had previously used Date
+- Fixed an infinite loop I somehow caused when moving fetch calls to context - still need to clean this up and figure out how to refactor, but it's working for now.
+- Added modal for create/edit/delete
+- Added searching name, location and notes
+
 ## 3/6/2022
 
 - Left off on cleaning up prop drilling in Dashboard
