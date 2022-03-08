@@ -1,6 +1,6 @@
 const FilterSort = () => {
   return (
-    <section class="filter-time">
+    <section className="filter-time">
       <label htmlFor="time">Sort By</label>
       <select id="time" name="time">
         <option value="0">Newest</option>

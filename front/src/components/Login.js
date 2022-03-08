@@ -7,7 +7,7 @@ const Login = () => {
   const [pwd, setPwd] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const navigate = useNavigate();
-  const { handleLogin, user } = useContext(DataContext);
+  const { handleLogin, user, setHikes, handleFetch, setLoading, setInitialHikes } = useContext(DataContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,6 +26,13 @@ const Login = () => {
     if (resp.status === 200) {
       // Sign in successful
       handleLogin(body);
+      // GET hikes
+      const resp2 = await handleFetch('GET');
+      if (resp2?.length) {
+        setLoading(false);
+        setHikes(resp);
+        setInitialHikes(resp);
+      }
       navigate('/hikes');
     } else {
       setErrorMsg(`${body.error}`);

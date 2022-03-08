@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import CreateHike from "./CreateHike";
 import HikesList from "./HikesList";
@@ -7,26 +7,13 @@ import Alert from "./Alert";
 
 const Dashboard = () => {
 
-  const { handleLogout, user, loading, createIsOpen, handleFetch, setLoading, setHikes, setInitialHikes } = useContext(DataContext);
+  const { handleLogout, user, loading, createIsOpen } = useContext(DataContext);
   const navigate = useNavigate();
 
   const handleLocalLogout = () => {
     handleLogout();
     navigate('/login');
   };
-
-  useEffect(() => {
-    console.log('fetching hikes');
-    const fetchHikes = async () => {
-      const resp = await handleFetch('GET');
-      if (resp?.length) {
-        setLoading(false);
-        setHikes(resp);
-        setInitialHikes(resp);
-      }
-    };
-    fetchHikes();
-  }, [user]);
 
   return (
     <>

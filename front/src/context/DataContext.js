@@ -9,7 +9,7 @@ export const DataProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [hikes, setHikes] = useState([]);
   const [alert, setAlert] = useState({});
-  const [initialHikes, setInitialHikes] = useState({});
+  const [initialHikes, setInitialHikes] = useState([]);
 
   useEffect(() => {
     if (localStorage.getItem('fs-user')) {
@@ -53,6 +53,32 @@ export const DataProvider = ({ children }) => {
       return { error };
     }
   };
+
+  useEffect(() => {
+    const fetchHikes = async () => {
+      if (!user?.token) return false;
+      try {
+        const HIKES_URI = `http://localhost:5000/api/hikes`;
+        const fetchOptions = {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${user.token}`
+          },
+        };
+        let resp = await fetch(HIKES_URI, fetchOptions);
+        let respBody = await resp.json();
+        if (respBody?.length) {
+          setLoading(false);
+          setHikes(respBody);
+          setInitialHikes(respBody);
+        }
+      } catch (error) {
+        return { error };
+      }
+    };
+    fetchHikes();
+  }, [user.token]);
 
   useEffect(() => {
     console.log(alert);

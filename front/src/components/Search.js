@@ -19,7 +19,7 @@ const Search = () => {
 
   return (
     <div className="search">
-      <input type="text" value={search}
+      <input type="text" value={search} placeholder="Search for a specific hike"
         id="search" name="search" className="search__input"
         onChange={handleSearch} ref={searchEl} autoComplete="off" />
       <button className="search__btn" onClick={handleSearch}>Search</button>

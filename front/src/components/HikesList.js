@@ -8,11 +8,6 @@ import Search from "./Search";
 const HikesList = () => {
   const { hikes, setCreateIsOpen } = useContext(DataContext);
 
-  useEffect(() => {
-    console.log(hikes);
-  }, [hikes]);
-
-
   return hikes && (
     <section>
       <h2>My Hikes</h2>
@@ -20,7 +15,7 @@ const HikesList = () => {
       <FilterTime />
       <FilterSort />
       <button onClick={() => setCreateIsOpen(true)}>Add New Hike</button>
-      {hikes.map(hike => <HikeItem hike={hike} key={hike._id} />)}
+      {hikes?.length > 0 ? hikes.map(hike => <HikeItem hike={hike} key={hike._id} />) : <p>No hikes found.</p>}
     </section>
   );
 };
