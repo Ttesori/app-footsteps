@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import DataContext from "../context/DataContext";
 import FilterTime from "./FilterTime";
 import FilterSort from "./FilterSort";

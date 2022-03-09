@@ -1,0 +1,30 @@
+:root {
+  --primary: #95cd43;
+  --primary-lt: #9fd948;
+  --neutral-dark: #474e3d;
+  --neutral-mid: #747762;
+  --neutral-midlt: #bdbdb2;
+  --neutral-lt: #f7f5f0;
+  --font-accent: Neutron, Cambria, Cochin, Georgia, Times, 'Times New Roman',
+    serif;
+  --font-primary: 'Open Sans', Arial, Helvetica, sans-serif;
+  font-size: 18px;
+}
+
+body {
+  background: var(--neutral-lt);
+  font-family: var(--font-primary);
+  color: var(--neutral-dark);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

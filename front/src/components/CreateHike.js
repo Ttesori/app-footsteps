@@ -44,10 +44,8 @@ const CreateHike = () => {
     e.preventDefault();
     if (hikeToEdit._id) {
       handleUpdateHike(newHike);
-      setNewHike(hikeTemplate);
     } else {
       handleCreateHike(newHike);
-      setNewHike(hikeTemplate);
     }
   };
 
@@ -57,8 +55,10 @@ const CreateHike = () => {
       setHikes([...hikes, body]);
       setCreateIsOpen(false);
       setAlert({ type: 'success', message: 'Hike added!' });
+      setNewHike(hikeTemplate);
     } else {
-      console.log('ERROR', body);
+      setCreateIsOpen(false);
+      setAlert({ type: 'error', message: 'Error creating hike. Please try again later.' });
     }
   };
 
@@ -69,8 +69,10 @@ const CreateHike = () => {
       setHikes([...newHikes, body]);
       setCreateIsOpen(false);
       setAlert({ type: 'success', message: 'Hike updated!' });
+      setNewHike(hikeTemplate);
     } else {
-      console.log('ERROR', body);
+      setCreateIsOpen(false);
+      setAlert({ type: 'error', message: 'Error updating hike. Please try again later.' });
     }
   };
 

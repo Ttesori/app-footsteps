@@ -7,7 +7,7 @@ import Alert from "./Alert";
 
 const Dashboard = () => {
 
-  const { handleLogout, user, loading, createIsOpen } = useContext(DataContext);
+  const { handleLogout, user, loading, createIsOpen, alert } = useContext(DataContext);
   const navigate = useNavigate();
 
   const handleLocalLogout = () => {

@@ -35,6 +35,7 @@ export const DataProvider = ({ children }) => {
   const handleFetch = async (method, addToURI = '', body = {}) => {
     if (!user?.token) return false;
     try {
+      console.log('fetching something');
       const HIKES_URI = `http://localhost:5000/api/hikes${addToURI}`;
       const fetchOptions = {
         method: method,
@@ -58,6 +59,7 @@ export const DataProvider = ({ children }) => {
     const fetchHikes = async () => {
       if (!user?.token) return false;
       try {
+        console.log('fetching hikes');
         const HIKES_URI = `http://localhost:5000/api/hikes`;
         const fetchOptions = {
           method: 'GET',
