@@ -1,3 +1,7 @@
+## 3/9/2022
+
+- WOrked on trying to figure out why I was having issues with fetch being in context and after spending several hours on it, I decided to let it go and worry about code optimization another time. Instead I prepped the code for styling; added a layout component and created variables for fonts and colors.
+
 ## 3/7/2022
 
 - Added filtering by date, using dayjs. Tried to do it with native Date but it got way too complicated. Still need to go back and implement dayjs where I had previously used Date
