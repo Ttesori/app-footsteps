@@ -4,13 +4,14 @@ import FilterTime from "./FilterTime";
 import FilterSort from "./FilterSort";
 import HikeItem from "./HikeItem";
 import Search from "./Search";
+import { IoFootsteps } from "react-icons/io5";
 
 const HikesList = () => {
   const { hikes, setCreateIsOpen } = useContext(DataContext);
 
   return hikes && (
     <section>
-      <h2>My Hikes</h2>
+      <h2><IoFootsteps /> My Hikes</h2>
       <Search />
       <FilterTime />
       <FilterSort />

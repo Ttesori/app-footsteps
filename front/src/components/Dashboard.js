@@ -20,7 +20,6 @@ const Dashboard = () => {
       {!loading && (
         <section>
           {alert?.type && <Alert type={alert.type} message={alert.message} />}
-          <h2>Welcome, {user.name}!</h2>
           <button onClick={handleLocalLogout}>Log Out</button>
           <HikesList />
           {createIsOpen &&

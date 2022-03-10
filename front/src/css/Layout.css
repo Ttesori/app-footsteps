@@ -10,10 +10,37 @@
 
 .nav__btn {
   position: absolute;
-  top: 1em;
-  right: 1em;
+  top: 0.15em;
+  right: 0.1em;
   z-index: 999;
   cursor: pointer;
+  font-size: 1.75rem;
+  line-height: 0.8;
+  padding: 0.15em 0.25em;
+  background: none;
+  border: 0;
+  color: var(--neutral-mid);
+}
+
+.nav__btn:focus-visible {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 0.5em;
+  transform: scale(1.1);
+  outline: 2px solid rgba(0, 0, 0, 0.3);
+}
+
+.nav--open .nav__btn {
+  color: var(--white);
+}
+
+.nav__btn span {
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
 }
 
 .nav__list {
@@ -57,7 +84,7 @@
   background: var(--white);
   border-radius: 0.5em;
   box-shadow: 0px 0px 0.2em rgba(0, 0, 0, 0.16);
-  margin: 0 0.75em;
-  padding: 0.5em 1em;
+  margin: 0 1.25em;
+  padding: 0.5em 1.25em;
   line-height: 1.6;
 }
