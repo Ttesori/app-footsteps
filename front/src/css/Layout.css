@@ -1,0 +1,63 @@
+.header {
+  margin-top: 2em;
+}
+
+.header__logo {
+  min-height: 150px;
+  background: url('../img/logo-footsteps.svg') no-repeat top center;
+  text-indent: -999em;
+}
+
+.nav__btn {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  z-index: 999;
+  cursor: pointer;
+}
+
+.nav__list {
+  display: grid;
+  justify-content: center;
+  place-items: center;
+  list-style: none;
+}
+
+.nav--closed .nav__list {
+  height: 0;
+  width: 0;
+  top: -999em;
+  opacity: 0;
+}
+
+.nav--open .nav__list {
+  width: 100vw;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(var(--neutral-dark-rgb), 0.95);
+  opacity: 1;
+}
+
+.nav__list-item {
+  margin-bottom: 0.5em;
+}
+
+.nav__list-link {
+  color: var(--neutral-lt);
+  font-family: var(--font-accent);
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.main {
+  background: var(--white);
+  border-radius: 0.5em;
+  box-shadow: 0px 0px 0.2em rgba(0, 0, 0, 0.16);
+  margin: 0 0.75em;
+  padding: 0.5em 1em;
+  line-height: 1.6;
+}

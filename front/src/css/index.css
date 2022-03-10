@@ -1,10 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
   --primary: #95cd43;
   --primary-lt: #9fd948;
   --neutral-dark: #474e3d;
+  --neutral-dark-rgb: 70, 77, 61;
   --neutral-mid: #747762;
   --neutral-midlt: #bdbdb2;
   --neutral-lt: #f7f5f0;
+  --white: #ffffff;
   --font-accent: Neutron, Cambria, Cochin, Georgia, Times, 'Times New Roman',
     serif;
   --font-primary: 'Open Sans', Arial, Helvetica, sans-serif;
@@ -27,4 +35,10 @@ body {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-accent);
 }
