@@ -82,6 +82,13 @@ const getUser = asyncHandler(async (req, res) => {
 });
 
 /*
+PUT - Update Current User
+*/
+const updateUser = asyncHandler(async (req, res) => {
+  res.send('Updating user...');
+});
+
+/*
 Generate JWT 
 */
 const generateToken = (id) => {
@@ -90,4 +97,4 @@ const generateToken = (id) => {
   });
 };
 
-module.exports = { createUser, loginUser, getUser };
+module.exports = { createUser, loginUser, getUser, updateUser };

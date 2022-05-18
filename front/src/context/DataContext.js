@@ -36,7 +36,7 @@ export const DataProvider = ({ children }) => {
     if (!user?.token) return false;
     try {
       console.log('fetching something');
-      const HIKES_URI = `http://localhost:5000/api/hikes${addToURI}`;
+      const HIKES_URI = `http://localhost:5001/api/hikes${addToURI}`;
       const fetchOptions = {
         method: method,
         headers: {
@@ -60,7 +60,7 @@ export const DataProvider = ({ children }) => {
       if (!user?.token) return false;
       try {
         console.log('fetching hikes');
-        const HIKES_URI = `http://localhost:5000/api/hikes`;
+        const HIKES_URI = `http://localhost:5001/api/hikes`;
         const fetchOptions = {
           method: 'GET',
           headers: {
