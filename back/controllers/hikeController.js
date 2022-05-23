@@ -87,4 +87,11 @@ const deleteHike = asyncHandler(async (req, res) => {
   res.status(200).json({ id: req.params.id });
 });
 
-module.exports = { getHikes, createHike, updateHike, deleteHike };
+/* GET park */
+const getParks = async (req, res) => {
+  const q = req.params.q;
+  console.log(q);
+  res.send(q);
+};
+
+module.exports = { getHikes, createHike, updateHike, deleteHike, getParks };
