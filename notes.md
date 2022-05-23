@@ -1,3 +1,7 @@
+## 5/23/2022
+
+- Began working on mobile styling, beginning with hikes list.
+
 ## 3/9/2022
 
 - WOrked on trying to figure out why I was having issues with fetch being in context and after spending several hours on it, I decided to let it go and worry about code optimization another time. Instead I prepped the code for styling; added a layout component and created variables for fonts and colors.
