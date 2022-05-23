@@ -1,0 +1,18 @@
+.search {
+  position: relative;
+}
+
+.search__input {
+  background: var(--neutral-lt);
+  display: block;
+  width: 100%;
+  border: 1px solid var(--neutral-midlt);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.search__btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

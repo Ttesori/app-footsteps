@@ -4,19 +4,26 @@ import FilterTime from "./FilterTime";
 import FilterSort from "./FilterSort";
 import HikeItem from "./HikeItem";
 import Search from "./Search";
-import { IoFootsteps } from "react-icons/io5";
+import { IoFootsteps, IoAddCircle } from "react-icons/io5";
+import '../css/HikesList.css';
 
 const HikesList = () => {
   const { hikes, setCreateIsOpen } = useContext(DataContext);
 
   return hikes && (
-    <section>
-      <h2><IoFootsteps /> My Hikes</h2>
-      <Search />
-      <FilterTime />
-      <FilterSort />
-      <button onClick={() => setCreateIsOpen(true)}>Add New Hike</button>
-      {hikes?.length > 0 ? hikes.map(hike => <HikeItem hike={hike} key={hike._id} />) : <p>No hikes found.</p>}
+    <section className="hikeslist">
+      <div className="hikeslist__header">
+        <h2 className="header header--myhikes"><IoFootsteps /> My Hikes</h2>
+        <Search />
+        <FilterTime />
+        <FilterSort />
+        <button className="btn btn--addHike" onClick={() => setCreateIsOpen(true)}><IoAddCircle /> <span>Add New Hike</span></button>
+      </div>
+
+      <div className="hikeslist__list">
+        {hikes?.length > 0 ? hikes.map(hike => <HikeItem hike={hike} key={hike._id} />) : <p>No hikes found.</p>}
+      </div>
+
     </section>
   );
 };

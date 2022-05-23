@@ -1,5 +1,6 @@
 import { useState, useContext, useRef } from "react";
 import DataContext from "../context/DataContext";
+import '../css/Search.css';
 
 const Search = () => {
   const { setHikes, initialHikes } = useContext(DataContext);

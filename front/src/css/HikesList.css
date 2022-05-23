@@ -1,0 +1,33 @@
+.hikeslist {
+}
+
+.hikeslist__header {
+  position: relative;
+}
+
+.header--myhikes {
+  font-size: 1.9rem;
+}
+.header svg {
+  fill: var(--primary);
+  margin-right: 0.25rem;
+  position: relative;
+  top: 5px;
+}
+
+.btn--addHike {
+  position: absolute;
+  top: 0.5rem;
+  right: 0;
+  width: 2rem;
+  height: 2rem;
+  background: none;
+  border: 0;
+  font-size: 2rem;
+  color: var(--primary);
+}
+
+.btn--addHike span {
+  display: inline-block;
+  text-indent: -999em;
+}

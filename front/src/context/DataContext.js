@@ -70,6 +70,7 @@ export const DataProvider = ({ children }) => {
         };
         let resp = await fetch(HIKES_URI, fetchOptions);
         let respBody = await resp.json();
+        console.log(respBody);
         if (respBody?.length) {
           setLoading(false);
           setHikes(respBody);

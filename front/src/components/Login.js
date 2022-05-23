@@ -40,10 +40,10 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (user.id) {
+    if (user._id) {
       navigate('/hikes');
     }
-  }, [navigate, user.id]);
+  }, [navigate, user._id]);
 
   return (
     <section className="login">
