@@ -85,7 +85,41 @@ const getUser = asyncHandler(async (req, res) => {
 PUT - Update Current User
 */
 const updateUser = asyncHandler(async (req, res) => {
-  res.send('Updating user...');
+  const { email, password } = req.body;
+
+  // Check for fields
+  if (!email || !password) {
+    res.status(400);
+    throw new Error('To update user must have email and password');
+  }
+
+  // Check if user exists
+  const userExists = await User.findOne({ email });
+  if (!userExists) {
+    res.status(400);
+    throw new Error('User does not exist');
+  }
+
+  // Hash password
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
+
+  // Create user
+  const user = await User.findOneAndUpdate({ email: email }, {
+    password: hashedPassword,
+  });
+
+  if (user) {
+    res.status(201).json({
+      _id: user.id,
+      name: user.name,
+      email: user.email,
+      token: generateToken(user.id)
+    });
+  } else {
+    res.status(400);
+    throw new Error('Unable to update user');
+  }
 });
 
 /*
