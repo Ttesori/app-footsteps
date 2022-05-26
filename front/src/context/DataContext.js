@@ -71,12 +71,14 @@ export const DataProvider = ({ children }) => {
         let resp = await fetch(HIKES_URI, fetchOptions);
         let respBody = await resp.json();
         console.log(respBody);
-        if (respBody?.length) {
+        if (respBody?.length && !respBody.error) {
           setLoading(false);
           setHikes(respBody);
           setInitialHikes(respBody);
         }
       } catch (error) {
+        handleLogout();
+        window.location = '/';
         return { error };
       }
     };

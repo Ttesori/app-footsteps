@@ -1,18 +1,27 @@
 .search {
   position: relative;
+  margin-bottom: 0.5em;
 }
 
 .search__input {
   background: var(--neutral-lt);
   display: block;
   width: 100%;
-  border: 1px solid var(--neutral-midlt);
-  padding: 0.5rem;
+  border: 0;
+  padding: 0.5rem 1rem;
   border-radius: 0.5rem;
+  box-shadow: inset 0px 0px 3px var(--neutral-midlt);
+  font-style: italic;
+  font-size: 0.9rem;
 }
 
 .search__btn {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 50%;
+  right: 0.5rem;
+  border: 0;
+  background: none;
+  font-size: 1.25rem;
+  transform: translateY(-40%);
+  color: var(--neutral-midlt);
 }

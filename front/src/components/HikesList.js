@@ -13,10 +13,13 @@ const HikesList = () => {
   return hikes && (
     <section className="hikeslist">
       <div className="hikeslist__header">
-        <h2 className="header header--myhikes"><IoFootsteps /> My Hikes</h2>
+        <h2 className="heading heading--myhikes"><IoFootsteps /> My Hikes</h2>
         <Search />
-        <FilterTime />
-        <FilterSort />
+        <div className="hikeslist__filters">
+          <FilterTime />
+          <FilterSort />
+        </div>
+
         <button className="btn btn--addHike" onClick={() => setCreateIsOpen(true)}><IoAddCircle /> <span>Add New Hike</span></button>
       </div>
 

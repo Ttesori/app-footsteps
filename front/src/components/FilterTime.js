@@ -1,5 +1,7 @@
 import { useContext } from "react";
+import { FaClock } from 'react-icons/fa';
 import DataContext from "../context/DataContext";
+import '../css/FilterTime.css';
 import dayjs from "dayjs";
 
 const FilterTime = () => {
@@ -18,14 +20,18 @@ const FilterTime = () => {
 
   return (
     <section className="filter-time">
-      <label htmlFor="time">Show Latest</label>
-      <select id="time" name="time" onChange={handleFilterTimeChange}>
-        <option value="30">30 days</option>
-        <option value="60">60 days</option>
-        <option value="60">90 days</option>
-        <option value="year">This Year</option>
-        <option value="all">All Time</option>
-      </select>
+      <FaClock />
+      <label htmlFor="time" className="sr-only">Show Latest</label>
+      <div className="filter-time__selectFaux">
+        <select id="time" name="time" onChange={handleFilterTimeChange} className="filter-time__select select-reset">
+          <option value="30">Last 30 days</option>
+          <option value="60">Last 60 days</option>
+          <option value="60">Last 90 days</option>
+          <option value="year">This Year</option>
+          <option value="all">All Time</option>
+        </select>
+      </div>
+
     </section>
   );
 };

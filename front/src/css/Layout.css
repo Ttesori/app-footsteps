@@ -67,6 +67,7 @@
   bottom: 0;
   background: rgba(var(--neutral-dark-rgb), 0.95);
   opacity: 1;
+  z-index: 990;
 }
 
 .nav__list-item {

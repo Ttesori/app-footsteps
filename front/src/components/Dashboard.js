@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CreateHike from "./CreateHike";
 import HikesList from "./HikesList";
@@ -10,21 +10,27 @@ const Dashboard = () => {
   const { handleLogout, user, loading, createIsOpen, alert } = useContext(DataContext);
   const navigate = useNavigate();
 
-  const handleLocalLogout = () => {
-    handleLogout();
-    navigate('/login');
-  };
+  useEffect(() => {
+    if (!user._id) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
+
+
+  // const handleLocalLogout = () => {
+  //   handleLogout();
+  //   navigate('/login');
+  // };
 
   return (
     <>
       {!loading && (
-        <section>
+        <>
           {alert?.type && <Alert type={alert.type} message={alert.message} />}
-          <button onClick={handleLocalLogout}>Log Out</button>
           <HikesList />
           {createIsOpen &&
             <CreateHike />}
-        </section>)}
+        </>)}
       {loading && (
         <p>Loading... </p>
       )}

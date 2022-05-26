@@ -1,0 +1,27 @@
+.filter-time {
+  position: relative;
+  flex: 1;
+}
+
+.filter-time svg {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  fill: var(--neutral-midlt);
+}
+
+.filter-time__selectFaux {
+  width: 100%;
+  border: 1px solid var(--neutral-lt);
+  box-shadow: inset 0px 0px 3px var(--neutral-midlt);
+  border-radius: 1rem;
+  padding: 0.25em 1em;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.filter-time__select {
+  text-transform: uppercase;
+  color: var(--neutral-mid);
+}

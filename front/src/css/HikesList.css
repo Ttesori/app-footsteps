@@ -5,10 +5,10 @@
   position: relative;
 }
 
-.header--myhikes {
+.heading--myhikes {
   font-size: 1.9rem;
 }
-.header svg {
+.heading svg {
   fill: var(--primary);
   margin-right: 0.25rem;
   position: relative;
@@ -30,4 +30,9 @@
 .btn--addHike span {
   display: inline-block;
   text-indent: -999em;
+}
+
+.hikeslist__filters {
+  display: flex;
+  column-gap: 1em;
 }
