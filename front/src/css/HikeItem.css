@@ -1,0 +1,59 @@
+.hike-item {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-rows: auto;
+  gap: 1em;
+  position: relative;
+  margin-bottom: 1em;
+}
+
+.hike-item__details {
+  list-style: none;
+  display: flex;
+  gap: 1em;
+}
+
+.hike-item__title-group {
+  order: 2;
+  grid-column-start: 2;
+  grid-column-end: 6;
+  grid-row-start: 1;
+}
+
+.hike-item__title {
+  margin-bottom: 0;
+}
+
+.hike-item__distance {
+  background: var(--primary);
+  border-radius: 50%;
+  order: 1;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+}
+
+.hike-details__date,
+.hike-details__location {
+  color: var(--neutral-mid);
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.hike-item__notes {
+  grid-column-start: 1;
+  grid-column-end: 6;
+  background: var(--neutral-lt);
+  box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.16);
+  border-radius: 0.5em;
+  font-style: italic;
+  font-size: 0.9rem;
+  padding: 0.5em 1em;
+}
+
+.btn--hike-edit {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
