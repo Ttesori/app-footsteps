@@ -5,6 +5,8 @@
   gap: 1em;
   position: relative;
   margin-bottom: 1em;
+  padding-bottom: 1.5em;
+  border-bottom: 1px solid var(--neutral-lt);
 }
 
 .hike-item__details {
@@ -31,6 +33,20 @@
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
+  font-family: var(--font-accent);
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 0.9;
+  text-align: center;
+  width: 2.5em;
+  height: 2.5em;
+  padding-top: 0.3em;
+}
+
+.hike-distance__unit {
+  font-size: 1rem;
+  font-weight: normal;
+  display: block;
 }
 
 .hike-details__date,
@@ -39,6 +55,20 @@
   text-transform: uppercase;
   font-weight: 600;
   font-size: 0.8rem;
+}
+
+.hike-details__date svg,
+.hike-details__location svg {
+  fill: var(--neutral-midlt);
+  margin-right: 0.5em;
+  position: relative;
+  top: 2px;
+}
+
+.hike-details__location svg {
+  height: 1.2em;
+  width: 1.2em;
+  top: 3px;
 }
 
 .hike-item__notes {
@@ -56,4 +86,11 @@
   position: absolute;
   top: 0;
   right: 0;
+  background: none;
+  border: 0;
+}
+.btn--hike-edit svg {
+  width: 1.5em;
+  height: 1.5em;
+  fill: var(--neutral-midlt);
 }
