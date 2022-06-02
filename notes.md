@@ -1,3 +1,7 @@
+## 6/2/2022
+
+- First pass at mobile styling complete - will work on add/update hike form next.
+
 ## 5/23/2022
 
 - Began working on mobile styling, beginning with hikes list.
