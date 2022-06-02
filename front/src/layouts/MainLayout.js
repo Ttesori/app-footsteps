@@ -24,8 +24,8 @@ const MainLayout = ({ children }) => {
       <main className="main">
         {children}
       </main>
-      <footer>
-        <p>Written by Toni</p>
+      <footer className="footer">
+        <p>Written by <a href="https://tonitesori.dev/">Toni</a></p>
       </footer>
     </>
   );

@@ -89,3 +89,11 @@
   padding: 0.5em 1.25em;
   line-height: 1.6;
 }
+
+.footer {
+  padding-top: 0.5em;
+  text-align: center;
+  font-family: var(--font-accent);
+  font-style: italic;
+  color: var(--neutral-midlt);
+}

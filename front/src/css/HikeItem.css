@@ -9,6 +9,11 @@
   border-bottom: 1px solid var(--neutral-lt);
 }
 
+.hike-item:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
 .hike-item__details {
   list-style: none;
   display: flex;

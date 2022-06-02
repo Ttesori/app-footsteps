@@ -48,6 +48,17 @@ input {
   font-family: var(--font-primary);
 }
 
+a {
+  color: var(--neutral-mid);
+  text-decoration-color: var(--neutral-midlt);
+  text-underline-offset: 1px;
+}
+
+a:hover {
+  color: var(--neutral-dark);
+  text-decoration-color: var(--neutral-mid);
+}
+
 .select-reset {
   appearance: none;
   background-color: transparent;
