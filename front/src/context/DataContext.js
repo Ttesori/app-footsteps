@@ -127,7 +127,6 @@ export const DataProvider = ({ children }) => {
   }, [sortBy]);
 
 
-
   return (
     <DataContext.Provider value={{
       user, setUser, handleLogin, handleLogout, handleFetch,
