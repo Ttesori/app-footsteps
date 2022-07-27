@@ -2,20 +2,25 @@
   padding: 0.5em;
   text-align: center;
   border-radius: 0.5em;
-  margin: 0.5em 0;
+  top: 0.5em;
   font-family: var(--font-accent);
   font-style: italic;
   font-size: 1.1rem;
+  position: absolute;
+  z-index: 999;
+  left: 1em;
+  right: 1em;
+  box-shadow: 0px 0px 0.25em rgba(var(--neutral-dark-rgb), 0.35);
 }
 .alert--error {
 }
 
 .alert--success {
-  border: 1px solid rgb(var(--color-success-rgb));
-  background: rgba(var(--color-success-rgb), 0.25);
+  border: 1px solid rgba(var(--color-success-rgb), 0.5);
+  background: #dcedc8;
 }
 
 .alert--info {
-  box-shadow: inset 0px 0px 3px var(--neutral-midlt);
-  background: var(--neutral-lt);
+  border: 1px solid #e3e2db;
+  background: hsla(43, 30%, 98%, 0.95);
 }
