@@ -5,6 +5,7 @@ import HikesList from "./HikesList";
 import DataContext from '../context/DataContext';
 import Alert from "./Alert";
 
+
 const Dashboard = () => {
 
   const { handleLogout, user, loading, createIsOpen, alert } = useContext(DataContext);

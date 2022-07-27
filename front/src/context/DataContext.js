@@ -10,6 +10,8 @@ export const DataProvider = ({ children }) => {
   const [hikes, setHikes] = useState([]);
   const [alert, setAlert] = useState({});
   const [initialHikes, setInitialHikes] = useState([]);
+  const [filterTime, setFilterTime] = useState(0);
+  const [sortBy, setSortBy] = useState(0);
 
   useEffect(() => {
     if (localStorage.getItem('fs-user')) {
@@ -17,7 +19,7 @@ export const DataProvider = ({ children }) => {
       setUser(user);
       setAlert({
         type: 'info',
-        message: `Welcome back, ${user.name}!`
+        message: `👋 Welcome back, ${user.name}!`
       });
     }
   }, [setUser]);
@@ -92,6 +94,38 @@ export const DataProvider = ({ children }) => {
     console.log(alert);
   }, [alert]);
 
+  useEffect(() => {
+    // re-sort hikes
+    let newHikes = [...hikes];
+    console.log(sortBy);
+    console.log(newHikes);
+    if (sortBy === 0) {
+      //oldest first
+      newHikes.sort((a, b) => new Date(b.date) - new Date(a.date));
+      console.log(newHikes);
+      setHikes(newHikes);
+    }
+
+    if (sortBy === 1) {
+      //newest first
+      newHikes.sort((a, b) => new Date(a.date) - new Date(b.date));
+      console.log(newHikes);
+      setHikes(newHikes);
+    }
+
+    if (sortBy === 2) {
+      // by distance
+      newHikes.sort((a, b) => b.distance - a.distance);
+      setHikes(newHikes);
+    }
+
+    if (sortBy === 3) {
+      // by distance
+      newHikes.sort((a, b) => a.distance - b.distance);
+      setHikes(newHikes);
+    }
+  }, [sortBy]);
+
 
 
   return (
@@ -102,7 +136,9 @@ export const DataProvider = ({ children }) => {
       hikeToEdit, setHikeToEdit,
       createIsOpen, setCreateIsOpen,
       alert, setAlert,
-      initialHikes, setInitialHikes
+      initialHikes, setInitialHikes,
+      filterTime, setFilterTime,
+      sortBy, setSortBy
     }}>
       {children}
     </DataContext.Provider>
