@@ -1,3 +1,7 @@
+## 7/27/2022
+
+- Decided to stick to mobile only layout for now and just get a working version complete and looking halfway decent. Added filter and sort functionality. Styled create/edit hike form. Styled login form.
+
 ## 6/2/2022
 
 - First pass at mobile styling complete - will work on add/update hike form next.
