@@ -7,7 +7,7 @@ const Login = () => {
   const [pwd, setPwd] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const navigate = useNavigate();
-  const { handleLogin, user, setHikes, handleFetch, setLoading, setInitialHikes } = useContext(DataContext);
+  const { handleLogin, user, setHikes, handleFetch, setLoading, setInitialHikes, handleLogout } = useContext(DataContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,21 +21,31 @@ const Login = () => {
       },
       body: JSON.stringify({ email, password: pwd })
     };
-    let resp = await fetch(LOGIN_URI, fetchOptions);
-    let body = await resp.json();
-    if (resp.status === 200) {
-      // Sign in successful
-      handleLogin(body);
-      // GET hikes
-      const resp2 = await handleFetch('GET');
-      if (resp2?.length) {
-        setLoading(false);
-        setHikes(resp);
-        setInitialHikes(resp);
+
+    try {
+      let resp = await fetch(LOGIN_URI, fetchOptions);
+      let body = await resp.json();
+      if (resp.status === 200) {
+        // Sign in successful
+        handleLogin(body);
+        // GET hikes
+        const resp2 = await handleFetch('GET');
+        if (resp2?.length) {
+          setLoading(false);
+          setHikes(resp);
+          setInitialHikes(resp);
+        }
+        navigate('/hikes');
+      } else {
+        console.log('ERROR', resp);
+        handleLogout();
+        setErrorMsg(`${body.error}`);
+        navigate('/');
       }
-      navigate('/hikes');
-    } else {
-      setErrorMsg(`${body.error}`);
+    } catch (error) {
+      handleLogout();
+      console.log('ERROR');
+      navigate('/login');
     }
   };
 

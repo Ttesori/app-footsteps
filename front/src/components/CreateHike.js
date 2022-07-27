@@ -1,6 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import DataContext from "../context/DataContext";
 import Modal from 'react-modal';
+import { FaTimes, FaTrashAlt } from "react-icons/fa";
+import "../css/Modal.css";
 Modal.setAppElement('#root');
 
 const CreateHike = () => {
@@ -108,12 +110,13 @@ const CreateHike = () => {
 
   return (
     <Modal
+      className='modal--create-hike'
       isOpen={createIsOpen}
       onRequestClose={handleCloseAction}
       contentLabel={hikeToEdit?._id ? 'Edit a Hike' : 'Add a Hike'}
     >
-      <button onClick={handleCloseAction}>Close</button>
-      <h2>{hikeToEdit?._id ? 'Edit' : 'Add'} a Hike</h2>
+      <button className="btn-close-modal" onClick={handleCloseAction}><span className="sr-only">Close</span><FaTimes /></button>
+      <h2 className="modal__title">{hikeToEdit?._id ? 'Edit' : 'Add'} a Hike</h2>
       <form onSubmit={handleSubmit} className="form form--add">
 
         <div className="form__group">
@@ -153,8 +156,8 @@ const CreateHike = () => {
           <textarea name="notes" id="notes" placeholder="Description" value={newHike.notes} onChange={handleUpdate}>
           </textarea>
         </div>
-        <button>{hikeToEdit?._id ? 'Update' : 'Add'} Hike</button>
-        {hikeToEdit?._id && <button onClick={() => handleDeleteHike(hikeToEdit._id)}>Remove Hike</button>}
+        <button className="btn--add-hike">{hikeToEdit?._id ? 'Update' : 'Add'} Hike</button>
+        {hikeToEdit?._id && <button onClick={() => handleDeleteHike(hikeToEdit._id)} className="btn--remove-hike"><FaTrashAlt /> Remove Hike</button>}
       </form>
     </Modal>
   );
