@@ -93,7 +93,9 @@
   right: 0;
   background: none;
   border: 0;
+  cursor: pointer;
 }
+
 .btn--hike-edit svg {
   width: 1.5em;
   height: 1.5em;

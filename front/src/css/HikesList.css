@@ -25,6 +25,7 @@
   border: 0;
   font-size: 2rem;
   color: var(--primary);
+  cursor: pointer;
 }
 
 .btn--addHike span {
