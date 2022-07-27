@@ -62,6 +62,7 @@
 .form__group textarea {
   padding: 0.5em;
   font-family: var(--font-primary);
+  min-height: 80px;
 }
 
 .btn--add-hike {
@@ -75,6 +76,11 @@
   font-family: var(--font-accent);
   margin-top: 0.25em;
   cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn--add-hike:hover {
+  background: var(--primary-hover);
 }
 
 .btn--remove-hike {
@@ -85,4 +91,16 @@
   display: block;
   margin: 0.75em auto;
   cursor: pointer;
+  transition: all 0.1s;
+  padding: 0.25em 0.5em;
+  border-radius: 0.25em;
+}
+
+.btn--remove-hike svg {
+  transform: translateY(2px);
+}
+
+.btn--remove-hike:hover {
+  background: var(--color-warning);
+  color: white;
 }

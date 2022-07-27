@@ -33,6 +33,11 @@
   text-indent: -999em;
 }
 
+.btn--addHike:hover {
+  color: var(--primary-hover);
+  transition: all 0.2s;
+}
+
 .hikeslist__filters {
   display: flex;
   column-gap: 1em;
