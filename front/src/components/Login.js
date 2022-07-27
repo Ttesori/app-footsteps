@@ -1,6 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DataContext from '../context/DataContext';
+import "../css/Login.css";
+import { FaArrowCircleRight } from "react-icons/fa";
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -74,7 +76,7 @@ const Login = () => {
             className="form__control"
             required />
         </div>
-        <button>Sign In</button>
+        <button className="btn--login"><FaArrowCircleRight /> Sign In</button>
       </form>
     </section>
   );

@@ -1,0 +1,27 @@
+.login {
+  text-align: center;
+}
+
+.btn--login {
+  padding: 0.35em 1em 0.5em;
+  font-weight: bold;
+  background: var(--neutral-dark);
+  color: #fff;
+  border: 0;
+  border-radius: 0.5em;
+  font-size: 1.15em;
+  font-family: var(--font-accent);
+  margin: 0.25em auto;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn--login svg {
+  transform: translateY(4px);
+  fill: var(--primary-lt);
+  margin-right: 0.25em;
+}
+
+.btn--login:hover {
+  background: var(--primary-hover);
+}

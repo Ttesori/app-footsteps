@@ -8,7 +8,7 @@ import Alert from "./Alert";
 
 const Dashboard = () => {
 
-  const { handleLogout, user, loading, createIsOpen, alert } = useContext(DataContext);
+  const { user, loading, createIsOpen, alert } = useContext(DataContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,12 +16,6 @@ const Dashboard = () => {
       navigate('/login');
     }
   }, [user, navigate]);
-
-
-  // const handleLocalLogout = () => {
-  //   handleLogout();
-  //   navigate('/login');
-  // };
 
   return (
     <>

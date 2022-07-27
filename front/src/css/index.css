@@ -7,6 +7,7 @@
 :root {
   --primary: #95cd43;
   --primary-lt: #9fd948;
+  --primary-hover: hsl(84, 58%, 40%);
   --neutral-dark: #474e3d;
   --neutral-dark-rgb: 70, 77, 61;
   --neutral-mid: #747762;

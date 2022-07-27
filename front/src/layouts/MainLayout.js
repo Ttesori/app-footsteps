@@ -1,9 +1,17 @@
 import '../css/Layout.css';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { IoMenuSharp, IoClose } from 'react-icons/io5';
+import DataContext from '../context/DataContext';
 
 const MainLayout = ({ children }) => {
   const [navOpen, setNavOpen] = useState(false);
+  const { handleLogout } = useContext(DataContext);
+  const localHandleLogout = (e) => {
+    e.preventDefault();
+    setNavOpen(false);
+    handleLogout();
+  };
+
   return (
     <>
       <header className='header'>
@@ -17,7 +25,7 @@ const MainLayout = ({ children }) => {
         </button>
         <menu className={`nav__list`}>
           <li className="nav__list-item">
-            <a href="#" className="nav__list-link">Log Out</a>
+            <a href="/logout" className="nav__list-link" onClick={localHandleLogout}>Log Out</a>
           </li>
         </menu>
       </nav>
