@@ -19,7 +19,7 @@ export const DataProvider = ({ children }) => {
       setUser(user);
       setAlert({
         type: 'info',
-        message: `👋 Welcome back, ${user.name}!`
+        message: `👋  Welcome back, ${user.name}!`
       });
     }
   }, [setUser]);

@@ -89,6 +89,7 @@
   padding: 0.5em 1.25em;
   line-height: 1.6;
   max-width: 500px;
+  position: relative;
 }
 
 .footer {
@@ -97,4 +98,5 @@
   font-family: var(--font-accent);
   font-style: italic;
   color: var(--neutral-midlt);
+  margin-bottom: 1em;
 }
