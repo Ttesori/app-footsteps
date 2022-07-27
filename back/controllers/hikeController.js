@@ -6,8 +6,7 @@ const User = require('../models/userModel');
 GET hikes
 */
 const getHikes = asyncHandler(async (req, res) => {
-  const hikes = await Hike.find({ user: req.user.id });
-
+  const hikes = await Hike.find({ user: req.user.id }).sort({ date: -1 });
   res.json(hikes);
 });
 
