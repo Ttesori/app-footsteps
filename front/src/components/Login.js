@@ -15,8 +15,8 @@ const Login = () => {
     e.preventDefault();
 
     // Send request to API
-    //const LOGIN_URI = 'http://localhost:5001/api/users/login';
-    const LOGIN_URI = 'https://footsteps-app.herokuapp.com/api/users/login';
+    const LOGIN_URI = 'http://localhost:5001/api/users/login';
+    //const LOGIN_URI = 'https://footsteps-app.herokuapp.com/api/users/login';
     const fetchOptions = {
       method: 'POST',
       headers: {

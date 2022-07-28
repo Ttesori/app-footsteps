@@ -29,7 +29,7 @@ const CreateHike = () => {
   };
 
   const [newHike, setNewHike] = useState(hikeTemplate);
-  const { createIsOpen, setCreateIsOpen, setHikeToEdit, hikeToEdit, handleFetch, setHikes, hikes, setAlert } = useContext(DataContext);
+  const { createIsOpen, setCreateIsOpen, setHikeToEdit, hikeToEdit, handleFetch, setHikes, hikes, setAlert, initialHikes, setInitialHikes } = useContext(DataContext);
 
   const handleUpdate = (e) => {
     const newHike2 = { ...newHike };
@@ -54,7 +54,7 @@ const CreateHike = () => {
   const handleCreateHike = async (newHike) => {
     let body = await handleFetch('POST', '', newHike);
     if (body._id && !body.error) {
-      setHikes([...hikes, body]);
+      setInitialHikes([body, ...initialHikes]);
       setCreateIsOpen(false);
       setAlert({ type: 'success', message: 'Hike added!' });
       setNewHike(hikeTemplate);
@@ -67,8 +67,8 @@ const CreateHike = () => {
   const handleUpdateHike = async (updateHike) => {
     let body = await handleFetch('PUT', `/${hikeToEdit._id}`, updateHike);
     if (body._id && !body.error) {
-      const newHikes = hikes.filter(hike => hike._id !== hikeToEdit._id);
-      setHikes([...newHikes, body]);
+      const newHikes = initialHikes.filter(hike => hike._id !== hikeToEdit._id);
+      setInitialHikes([...newHikes, body]);
       setCreateIsOpen(false);
       setAlert({ type: 'success', message: 'Hike updated!' });
       setNewHike(hikeTemplate);
@@ -82,10 +82,13 @@ const CreateHike = () => {
     let body = await handleFetch('DELETE', `/${hikeToEdit._id}`);
     if (body.id) {
       const newHikes = hikes.filter(hike => hike._id !== hikeId);
-      setHikes([...newHikes]);
+      setInitialHikes([...newHikes]);
       setCreateIsOpen(false);
       setAlert({ type: 'success', message: 'Hike deleted!' });
+      setNewHike(hikeTemplate);
     } else {
+      setCreateIsOpen(false);
+      setAlert({ type: 'error', message: 'Error deleting hike. Please try again later.' });
       console.log('ERROR', body);
     }
   };

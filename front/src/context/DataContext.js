@@ -1,7 +1,9 @@
 import { createContext, useState, useEffect } from "react";
+import dayjs from "dayjs";
 
 const DataContext = createContext({});
-const URI_BASE = `https://footsteps-app.herokuapp.com/api/hikes`;
+//const URI_BASE = `https://footsteps-app.herokuapp.com/api/hikes`;
+const URI_BASE = `http://localhost:5001/api/hikes`;
 
 export const DataProvider = ({ children }) => {
   const [user, setUser] = useState({});
@@ -11,7 +13,7 @@ export const DataProvider = ({ children }) => {
   const [hikes, setHikes] = useState([]);
   const [alert, setAlert] = useState({});
   const [initialHikes, setInitialHikes] = useState([]);
-  const [filterTime, setFilterTime] = useState(0);
+  const [filterTime, setFilterTime] = useState("30");
   const [sortBy, setSortBy] = useState(0);
 
   useEffect(() => {
@@ -35,6 +37,7 @@ export const DataProvider = ({ children }) => {
     localStorage.removeItem('fs-user');
   };
 
+  // ADD or EDIT a hike
   const handleFetch = async (method, addToURI = '', body = {}) => {
     if (!user?.token) return false;
     try {
@@ -57,6 +60,7 @@ export const DataProvider = ({ children }) => {
     }
   };
 
+  // GET all Hikes
   useEffect(() => {
     const fetchHikes = async () => {
       if (!user?.token) return false;
@@ -91,28 +95,44 @@ export const DataProvider = ({ children }) => {
 
   useEffect(() => {
     // re-sort hikes
-    let newHikes = [...hikes];
+    let newHikes = [...initialHikes];
     if (sortBy === 0) {
       //oldest first
       newHikes.sort((a, b) => new Date(b.date) - new Date(a.date));
-      setHikes(newHikes);
+      setInitialHikes(newHikes);
     }
     if (sortBy === 1) {
       //newest first
       newHikes.sort((a, b) => new Date(a.date) - new Date(b.date));
-      setHikes(newHikes);
+      setInitialHikes(newHikes);
     }
     if (sortBy === 2) {
       // by distance
       newHikes.sort((a, b) => b.distance - a.distance);
-      setHikes(newHikes);
+      setInitialHikes(newHikes);
     }
     if (sortBy === 3) {
       // by distance
       newHikes.sort((a, b) => a.distance - b.distance);
-      setHikes(newHikes);
+      setInitialHikes(newHikes);
     }
   }, [sortBy]);
+
+  // Set time filter
+  useEffect(() => {
+    const dates = {
+      "30": dayjs().subtract(30, 'd'),
+      "60": dayjs().subtract(60, 'd'),
+      "90": dayjs().subtract(90, 'd'),
+      "year": dayjs(`${dayjs().format('YYYY')}-01-01`),
+    };
+    if (filterTime === "all") {
+      setHikes(initialHikes);
+    } else {
+      setHikes(initialHikes.filter(hike => dayjs(hike.date).isAfter(dates[filterTime])));
+    }
+  }, [filterTime, initialHikes]);
+
 
 
   return (
