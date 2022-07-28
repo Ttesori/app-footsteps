@@ -9,7 +9,7 @@ const app = express();
 
 // CORS
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://footsteps-app.herokuapp.com/']
+  origin: ['http://localhost:3000', 'https://footsteps-app.herokuapp.com/', 'https://dreamy-selkie-bbda31.netlify.app/']
 }));
 
 // Body parser
