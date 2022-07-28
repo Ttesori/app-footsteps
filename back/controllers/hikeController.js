@@ -23,7 +23,6 @@ const createHike = asyncHandler(async (req, res) => {
     title, location, distance, date, notes,
     user: req.user.id
   });
-  console.log(hike);
   if (hike._id) {
     res.status(201).json(hike);
   } else {

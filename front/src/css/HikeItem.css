@@ -32,7 +32,7 @@
 }
 
 .hike-item__distance {
-  background: var(--primary);
+  background: var(--primary-lt);
   border-radius: 50%;
   order: 1;
   grid-column-start: 1;

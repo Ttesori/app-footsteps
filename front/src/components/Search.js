@@ -13,7 +13,6 @@ const Search = () => {
     if (searchTerm !== search) {
       setSearch(searchTerm);
       const filtered = initialHikes.filter(hike => hike.title.toLowerCase().includes(searchTerm) || hike.location.toLowerCase().includes(searchTerm) || hike.notes.toLowerCase().includes(searchTerm));
-      console.log(filtered);
       setHikes(filtered);
     }
 

@@ -1,3 +1,10 @@
+/* #root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+} */
+
 .login {
   text-align: center;
 }

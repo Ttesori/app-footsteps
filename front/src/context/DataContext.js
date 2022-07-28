@@ -61,7 +61,6 @@ export const DataProvider = ({ children }) => {
     const fetchHikes = async () => {
       if (!user?.token) return false;
       try {
-        console.log('fetching hikes');
         const HIKES_URI = `http://localhost:5001/api/hikes`;
         const fetchOptions = {
           method: 'GET',
@@ -91,34 +90,23 @@ export const DataProvider = ({ children }) => {
   }, [user.token]);
 
   useEffect(() => {
-    console.log(alert);
-  }, [alert]);
-
-  useEffect(() => {
     // re-sort hikes
     let newHikes = [...hikes];
-    console.log(sortBy);
-    console.log(newHikes);
     if (sortBy === 0) {
       //oldest first
       newHikes.sort((a, b) => new Date(b.date) - new Date(a.date));
-      console.log(newHikes);
       setHikes(newHikes);
     }
-
     if (sortBy === 1) {
       //newest first
       newHikes.sort((a, b) => new Date(a.date) - new Date(b.date));
-      console.log(newHikes);
       setHikes(newHikes);
     }
-
     if (sortBy === 2) {
       // by distance
       newHikes.sort((a, b) => b.distance - a.distance);
       setHikes(newHikes);
     }
-
     if (sortBy === 3) {
       // by distance
       newHikes.sort((a, b) => a.distance - b.distance);
