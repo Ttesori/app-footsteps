@@ -8,7 +8,7 @@ const Alert = () => {
     if (alert?.type) {
       setTimeout(() => {
         setAlert({});
-      }, 30000);
+      }, 3000);
     }
   }, [alert, setAlert]);
 

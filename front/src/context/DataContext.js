@@ -38,7 +38,6 @@ export const DataProvider = ({ children }) => {
   const handleFetch = async (method, addToURI = '', body = {}) => {
     if (!user?.token) return false;
     try {
-      console.log('fetching something');
       const HIKES_URI = `${URI_BASE}${addToURI}`;
       const fetchOptions = {
         method: method,
