@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 
 const DataContext = createContext({});
+const URI_BASE = `https://footsteps-app.herokuapp.com/api/hikes`;
 
 export const DataProvider = ({ children }) => {
   const [user, setUser] = useState({});
@@ -38,7 +39,7 @@ export const DataProvider = ({ children }) => {
     if (!user?.token) return false;
     try {
       console.log('fetching something');
-      const HIKES_URI = `http://localhost:5001/api/hikes${addToURI}`;
+      const HIKES_URI = `${URI_BASE}${addToURI}`;
       const fetchOptions = {
         method: method,
         headers: {
@@ -61,7 +62,7 @@ export const DataProvider = ({ children }) => {
     const fetchHikes = async () => {
       if (!user?.token) return false;
       try {
-        const HIKES_URI = `http://localhost:5001/api/hikes`;
+        const HIKES_URI = URI_BASE;
         const fetchOptions = {
           method: 'GET',
           headers: {
