@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { useState, useEffect, useContext } from "react";
 import DataContext from "../context/DataContext";
 import Modal from 'react-modal';
@@ -5,20 +6,10 @@ import { FaTimes, FaTrashAlt } from "react-icons/fa";
 import "../css/Modal.css";
 Modal.setAppElement('#root');
 
-const CreateHike = () => {
-  const parseDate = (date) => {
-    let year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    let dt = date.getDate();
 
-    if (dt < 10) {
-      dt = '0' + dt;
-    }
-    if (month < 10) {
-      month = '0' + month;
-    }
-    return `${year}-${month}-${dt}`;
-  };
+const CreateHike = () => {
+  const [newHike, setNewHike] = useState(hikeTemplate);
+  const { createIsOpen, setCreateIsOpen, setHikeToEdit, hikeToEdit, handleFetch, setHikes, hikes, setAlert, initialHikes, setInitialHikes, setSortBy, parseDate } = useContext(DataContext);
 
   const hikeTemplate = {
     title: '',
@@ -27,9 +18,6 @@ const CreateHike = () => {
     date: parseDate(new Date()),
     notes: ''
   };
-
-  const [newHike, setNewHike] = useState(hikeTemplate);
-  const { createIsOpen, setCreateIsOpen, setHikeToEdit, hikeToEdit, handleFetch, setHikes, hikes, setAlert, initialHikes, setInitialHikes } = useContext(DataContext);
 
   const handleUpdate = (e) => {
     const newHike2 = { ...newHike };
@@ -71,7 +59,7 @@ const CreateHike = () => {
       setInitialHikes([...newHikes, body]);
       setCreateIsOpen(false);
       setAlert({ type: 'success', message: 'Hike updated!' });
-      setNewHike(hikeTemplate);
+      setHikeToEdit(null);
     } else {
       setCreateIsOpen(false);
       setAlert({ type: 'error', message: 'Error updating hike. Please try again later.' });
@@ -105,7 +93,7 @@ const CreateHike = () => {
         title: hikeToEdit?.title,
         location: hikeToEdit?.location,
         distance: hikeToEdit?.distance || '',
-        date: hikeToEdit?.date ? parseDate(new Date(hikeToEdit.date)) : parseDate(new Date()),
+        date: hikeToEdit?.date ? dayjs(parseDate(hikeToEdit.date)).format('YYYY-MM-DD') : dayjs().format('YYYY-MM-DD'),
         notes: hikeToEdit?.notes || ''
       });
     }

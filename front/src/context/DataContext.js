@@ -2,8 +2,8 @@ import { createContext, useState, useEffect } from "react";
 import dayjs from "dayjs";
 
 const DataContext = createContext({});
-const URI_BASE = `https://footsteps-app.herokuapp.com/api/hikes`;
-//const URI_BASE = `http://localhost:5001/api/hikes`;
+//const URI_BASE = `https://footsteps-app.herokuapp.com/api/hikes`;
+const URI_BASE = `http://localhost:5001/api/hikes`;
 
 export const DataProvider = ({ children }) => {
   const [user, setUser] = useState({});
@@ -78,6 +78,7 @@ export const DataProvider = ({ children }) => {
         if (resp.status === 200) {
           setLoading(false);
           setHikes(respBody);
+          console.log(respBody);
           setInitialHikes(respBody);
         } else {
           handleLogout();
@@ -133,6 +134,11 @@ export const DataProvider = ({ children }) => {
     }
   }, [filterTime, initialHikes]);
 
+  const parseDate = (date) => {
+    let dt = new Date(date);
+    return dt.setMinutes(dt.getMinutes() + dt.getTimezoneOffset());
+  };
+
 
 
   return (
@@ -145,7 +151,8 @@ export const DataProvider = ({ children }) => {
       alert, setAlert,
       initialHikes, setInitialHikes,
       filterTime, setFilterTime,
-      sortBy, setSortBy
+      sortBy, setSortBy,
+      parseDate
     }}>
       {children}
     </DataContext.Provider>

@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { useContext } from "react";
 import DataContext from "../context/DataContext";
 import '../css/HikeItem.css';
@@ -5,16 +6,7 @@ import { IoLocationSharp } from "react-icons/io5";
 import { FaClock, FaEdit } from "react-icons/fa";
 
 const HikeItem = ({ hike }) => {
-  const { hikes, setHikeToEdit, setCreateIsOpen } = useContext(DataContext);
-
-  const formatDate = (d) => {
-    const date = new Date(d);
-    let year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    let dt = date.getDate();
-
-    return `${month}/${dt}/${year}`;
-  };
+  const { hikes, setHikeToEdit, setCreateIsOpen, parseDate } = useContext(DataContext);
 
   const handleEditHike = (id) => {
     const selectedHike = hikes.filter(hike => hike._id === id)[0];
@@ -30,7 +22,7 @@ const HikeItem = ({ hike }) => {
           {hike.date &&
             <li className="hike-details__date">
               <FaClock />
-              {formatDate(hike.date)}
+              {dayjs(parseDate(hike.date)).format('MM/DD/YYYY')}
             </li>}
           <li className="hike-details__location">
             <IoLocationSharp />
