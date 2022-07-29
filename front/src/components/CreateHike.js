@@ -8,9 +8,7 @@ Modal.setAppElement('#root');
 
 
 const CreateHike = () => {
-  const [newHike, setNewHike] = useState(hikeTemplate);
-  const { createIsOpen, setCreateIsOpen, setHikeToEdit, hikeToEdit, handleFetch, setHikes, hikes, setAlert, initialHikes, setInitialHikes, setSortBy, parseDate } = useContext(DataContext);
-
+  const { createIsOpen, setCreateIsOpen, setHikeToEdit, hikeToEdit, handleFetch, hikes, setAlert, initialHikes, setInitialHikes, parseDate } = useContext(DataContext);
   const hikeTemplate = {
     title: '',
     location: '',
@@ -18,6 +16,8 @@ const CreateHike = () => {
     date: parseDate(new Date()),
     notes: ''
   };
+
+  const [newHike, setNewHike] = useState(hikeTemplate);
 
   const handleUpdate = (e) => {
     const newHike2 = { ...newHike };
