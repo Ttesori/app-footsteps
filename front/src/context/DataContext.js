@@ -2,8 +2,7 @@ import { createContext, useState, useEffect } from "react";
 import dayjs from "dayjs";
 
 const DataContext = createContext({});
-//const URI_BASE = `https://footsteps-app.herokuapp.com/api/hikes`;
-const URI_BASE = `http://localhost:5001/api/hikes`;
+const URI_BASE = process.env.NODE_ENV === 'production' ? 'https://footsteps-app.herokuapp.com/api/hikes' : 'http://localhost:5001/api/hikes';
 
 export const DataProvider = ({ children }) => {
   const [user, setUser] = useState({});

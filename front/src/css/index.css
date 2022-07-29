@@ -14,7 +14,8 @@
   --neutral-midlt: #bdbdb2;
   --neutral-lt: #f7f5f0;
   --neutral-lt-rgb: 247, 245, 240;
-  --color-warning: #bf360c;
+  --color-warning: #d84315;
+  --color-warning-hsl: 14, 88%, 40%;
   --color-success-rgb: 119, 164, 50;
   --white: #ffffff;
   --font-accent: Neuton, Cambria, Cochin, Georgia, Times, 'Times New Roman',
@@ -75,4 +76,9 @@ a:hover {
   cursor: inherit;
   line-height: inherit;
   outline: none;
+}
+
+input:focus-visible {
+  outline: 2px solid var(--primary-lt);
+  background-color: var(--neutral-lt);
 }

@@ -32,3 +32,39 @@
 .btn--login:hover {
   background: var(--primary-hover);
 }
+
+.login .alert {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-bottom: 0.5em;
+}
+
+.btn--register {
+  background: var(--neutral-lt);
+  color: var(--neutral-mid);
+  border: 1px solid var(--neutral-midlt);
+  font-size: 0.8rem;
+  display: block;
+  margin: 0.5em auto 0.75em;
+  cursor: pointer;
+  transition: all 0.1s;
+  padding: 0.25em 0.5em;
+  border-radius: 0.25em;
+  font-weight: bold;
+}
+
+.btn--register svg {
+  transform: translateY(2px);
+  fill: var(--neutral-midlt);
+}
+
+.btn--register:hover {
+  background: var(--primary);
+  color: var(--neutral-dark);
+}
+
+.btn--register:hover svg {
+  fill: var(--neutral-dark);
+}

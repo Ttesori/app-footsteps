@@ -67,3 +67,12 @@
   padding-left: 0.25em;
   font-weight: normal;
 }
+
+.text--empty {
+  font-style: italic;
+  text-align: center;
+  padding: 1em;
+  border-radius: 1em;
+  border: 3px dashed var(--neutral-lt);
+  color: var(--neutral-mid);
+}

@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import DataContext from '../context/DataContext';
-import { IoMenuSharp, IoClose } from 'react-icons/io5';
+import { IoMenuSharp, IoClose, IoLogOut } from 'react-icons/io5';
 
 const Nav = () => {
   const [navOpen, setNavOpen] = useState(false);
@@ -18,7 +18,7 @@ const Nav = () => {
         </button>
         <menu className={`nav__list`}>
           <li className="nav__list-item">
-            <a href="/logout" className="nav__list-link" onClick={localHandleLogout}>Log Out</a>
+            <a href="/logout" className="nav__list-link" onClick={localHandleLogout}><IoLogOut /> Log Out</a>
           </li>
         </menu>
       </nav>

@@ -7,10 +7,10 @@ const User = require('../models/userModel');
 POST - Register new user
 */
 const createUser = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, pwd } = req.body;
 
   // Check for fields
-  if (!name || !email || !password) {
+  if (!name || !email || !pwd) {
     res.status(400);
     throw new Error('New user must have name, email and password');
   }
@@ -24,7 +24,7 @@ const createUser = asyncHandler(async (req, res) => {
 
   // Hash password
   const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(password, salt);
+  const hashedPassword = await bcrypt.hash(pwd, salt);
 
   // Create user
   const user = await User.create({

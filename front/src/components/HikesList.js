@@ -25,7 +25,7 @@ const HikesList = () => {
       </div>
 
       <div className="hikeslist__list">
-        {hikes?.length > 0 ? hikes.map(hike => <HikeItem hike={hike} key={hike._id} />) : <p>No hikes found.</p>}
+        {hikes?.length > 0 ? hikes.map(hike => <HikeItem hike={hike} key={hike._id} />) : <p className="text--empty">No hikes found.</p>}
       </div>
       <div className="hikeslist__total">
         {hikes?.length > 0 &&
